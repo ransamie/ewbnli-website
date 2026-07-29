@@ -1,0 +1,153 @@
+// Update current year in footer
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Mobile Navigation Toggle
+const navToggle = document.querySelector('.nav-toggle');
+const nav = document.querySelector('.nav');
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelectorAll('.nav-link');
+
+navToggle.addEventListener('click', () => {
+  nav.classList.toggle('active');
+  hamburger.classList.toggle('active');
+});
+
+// Close mobile nav when clicking a link
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (nav.classList.contains('active')) {
+      nav.classList.remove('active');
+      hamburger.classList.remove('active');
+    }
+  });
+});
+
+// Scroll Reveal Animations using Intersection Observer
+const observerOptions = {
+  root: null,
+  rootMargin: '0px',
+  threshold: 0.15
+};
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Select all elements to animate
+const animatableElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
+animatableElements.forEach(el => observer.observe(el));
+
+// Dynamic Gallery Injection for Swiper
+const galleryWrapper = document.getElementById('gallery-wrapper');
+
+if (galleryWrapper) {
+  // Lightbox event delegation
+  galleryWrapper.addEventListener('click', (e) => {
+    if (e.target.tagName === 'IMG') {
+      openLightbox(e.target.src);
+    }
+  });
+
+  // Initialize Swiper Carousel
+  const swiper = new Swiper('.gallery-swiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 3,
+        spaceBetween: 40,
+      }
+    }
+  });
+}
+
+// Lightbox Logic
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.querySelector('.lightbox-close');
+
+function openLightbox(src) {
+  lightboxImg.src = src;
+  lightbox.classList.add('show');
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('show');
+  setTimeout(() => {
+    lightboxImg.src = '';
+  }, 300);
+}
+
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightbox) {
+  lightbox.addEventListener('click', (e) => {
+    if (e.target !== lightboxImg) {
+      closeLightbox();
+    }
+  });
+}
+
+// Copy Account Number Function
+window.copyAccount = function(accNumber) {
+  navigator.clipboard.writeText(accNumber).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 3000);
+  }).catch(err => {
+    console.error('Failed to copy text: ', err);
+    alert('Failed to copy account number. Please copy it manually.');
+  });
+};
+
+// Scroll to Top Logic
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+if (scrollToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      scrollToTopBtn.classList.add('show');
+    } else {
+      scrollToTopBtn.classList.remove('show');
+    }
+  });
+
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox && lightbox.classList.contains('show')) {
+    closeLightbox();
+  }
+});

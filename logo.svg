@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" width="1000" height="300">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&amp;display=swap');
+      .logo-text {
+        font-family: 'Oswald', 'Impact', 'Arial Narrow', sans-serif;
+        font-weight: 700;
+        fill: #4E6932;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+    </style>
+  </defs>
+
+  <g transform="translate(20, 10)">
+    <!-- EWBNLI ICON GROUP -->
+    <g transform="translate(10, 0) scale(2.2)">
+      <!-- 1. Far Left Figure - Crimson Red -->
+      <path d="M 18,110 C 18,95 12,85 5,70 C 0,59 0,45 10,50 C 18,54 22,66 22,78 C 22,90 28,102 33,110 Z" fill="#931A1D"/>
+      <circle cx="22" cy="58" r="6" fill="#931A1D"/>
+
+      <!-- 2. Mid Left Figure - Teal/Cyan -->
+      <path d="M 33,110 C 33,95 28,75 22,55 C 18,40 18,25 28,28 C 34,30 35,45 35,60 C 35,80 43,98 46,110 Z" fill="#13819A"/>
+      <circle cx="29" cy="38" r="5.5" fill="#13819A"/>
+
+      <!-- 3. Mid Right Figure - Dark Purple/Plum -->
+      <path d="M 54,110 C 57,98 65,80 65,60 C 65,45 66,30 72,28 C 82,25 82,40 78,55 C 72,75 67,95 67,110 Z" fill="#4E3647"/>
+      <circle cx="71" cy="38" r="5.5" fill="#4E3647"/>
+
+      <!-- 4. Far Right Figure - Mauve Pink -->
+      <path d="M 67,110 C 72,102 78,90 78,78 C 78,66 82,54 90,50 C 100,45 100,59 95,70 C 88,85 82,95 82,110 Z" fill="#B78796"/>
+      <circle cx="78" cy="58" r="6" fill="#B78796"/>
+
+      <!-- 5. Center Figure - Olive Green -->
+      <!-- Left curving leaf arm -->
+      <path d="M 45,110 C 45,85 30,60 22,35 C 18,20 22,5 34,8 C 42,10 42,28 38,48 C 35,65 48,90 48,110 Z" fill="#6D8C43"/>
+      <!-- Right curving leaf arm -->
+      <path d="M 52,110 C 52,90 65,65 62,48 C 58,28 58,10 66,8 C 78,5 82,20 78,35 C 70,60 55,85 55,110 Z" fill="#6D8C43"/>
+      <!-- Center body trunk & head -->
+      <path d="M 47,110 L 47,75 C 47,65 53,65 53,75 L 53,110 Z" fill="#6D8C43"/>
+      <circle cx="50" cy="62" r="6.5" fill="#6D8C43"/>
+
+      <!-- Sun above head -->
+      <circle cx="50" cy="30" r="7" fill="#E76023"/>
+      <!-- Sun Rays -->
+      <g stroke="#E76023" stroke-width="2" stroke-linecap="round">
+        <line x1="50" y1="18" x2="50" y2="20" />
+        <line x1="50" y1="40" x2="50" y2="42" />
+        <line x1="38" y1="30" x2="40" y2="30" />
+        <line x1="60" y1="30" x2="62" y2="30" />
+        <line x1="41" y1="21" x2="43" y2="23" />
+        <line x1="57" y1="37" x2="59" y2="39" />
+        <line x1="41" y1="39" x2="43" y2="37" />
+        <line x1="57" y1="23" x2="59" y2="21" />
+      </g>
+    </g>
+
+    <!-- TYPOGRAPHY GROUP -->
+    <g transform="translate(270, 75)">
+      <text class="logo-text" x="0" y="55" font-size="58" letter-spacing="1">EMPOWERING WOMEN TO</text>
+      <text class="logo-text" x="0" y="125" font-size="58" letter-spacing="1">BEGIN NEW LIFE INITIATIVE</text>
+    </g>
+  </g>
+</svg>
