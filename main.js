@@ -113,10 +113,19 @@ if (lightbox) {
 }
 
 // Copy Account Number Function
-window.copyAccount = function(accNumber) {
+window.copyAccount = function(accNumber, btnElement) {
   navigator.clipboard.writeText(accNumber).then(() => {
     const toast = document.getElementById('toast');
     toast.classList.add('show');
+    
+    if (btnElement) {
+      const originalIcon = btnElement.innerHTML;
+      btnElement.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+      setTimeout(() => {
+        btnElement.innerHTML = originalIcon;
+      }, 3000);
+    }
+
     setTimeout(() => {
       toast.classList.remove('show');
     }, 3000);
