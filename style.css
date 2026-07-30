@@ -762,6 +762,18 @@ img {
   box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
   text-transform: uppercase;
   letter-spacing: 1px;
+  
+  /* Scroll Animation Properties */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+.sticky-cta.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }
 
 @media (max-width: 992px) {

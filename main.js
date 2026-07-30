@@ -135,17 +135,21 @@ window.copyAccount = function(accNumber, btnElement) {
   });
 };
 
-// Scroll to Top Logic
+// Scroll to Top Logic & Sticky CTA Logic
 const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+const stickyCta = document.querySelector('.sticky-cta');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    if (scrollToTopBtn) scrollToTopBtn.classList.add('show');
+    if (stickyCta) stickyCta.classList.add('show');
+  } else {
+    if (scrollToTopBtn) scrollToTopBtn.classList.remove('show');
+    if (stickyCta) stickyCta.classList.remove('show');
+  }
+});
 
 if (scrollToTopBtn) {
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-      scrollToTopBtn.classList.add('show');
-    } else {
-      scrollToTopBtn.classList.remove('show');
-    }
-  });
 
   scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
