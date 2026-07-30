@@ -442,7 +442,7 @@ img {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--color-accent);
+  color: var(--color-primary);
   letter-spacing: 2px;
 }
 .copy-btn {
