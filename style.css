@@ -862,8 +862,14 @@ img {
   }
 
 
+  .logo-img {
+    height: 45px;
+    max-width: 70vw;
+    object-fit: contain;
+  }
   .nav-toggle {
     display: block;
+    flex-shrink: 0;
   }
   .nav {
     position: absolute;
