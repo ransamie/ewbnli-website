@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: ransamie/ewbnli-website
+  branch: main
+
+media_folder: "public/assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "homepage"
+    label: "Homepage Content"
+    files:
+      - file: "public/content/data.json"
+        label: "Homepage Content"
+        name: "home"
+        fields:
+          - label: "Hero Title"
+            name: "heroTitle"
+            widget: "string"
+            default: "Empower Lives."
+          - label: "Hero Subtitle"
+            name: "heroSubtitle"
+            widget: "string"
+            default: "Bridging the gap. Restoring hope to vulnerable women and children."
+          - label: "Who We Are (Text)"
+            name: "whoWeAre"
+            widget: "markdown"
+            default: "<strong>Empowering Women To Begin New Life Initiative (EWBNLI)</strong> is a non-governmental organization dedicated to bridging the gap for vulnerable women and children.\n\nFounded by Ms. Anietie Mbosowo, our mission is to pull women and children out of destructive lifestyles, idleness, and hopelessness.\n\nWe provide housing, feeding, school enrollment, and essential vocational training skills to ensure a sustainable, empowered future for those in our care."
+          - label: "Founder Quote"
+            name: "founderQuote"
+            widget: "text"
+            default: "\"I focus on getting commercial sex workers out of ungodly and degrading trades, and helping the sexually abused. I rehabilitate these women to have a new life and a more decent source of livelihood.\""
+          - label: "How It Started (Text)"
+            name: "howItStarted"
+            widget: "markdown"
+            default: "It all began after my youth service corps when I noticed many teenagers and women in their sixties standing virtually naked, even in broad daylight, trading their bodies for pittance with any man or boy who cares.\n\nThis foundation has been in existence since the year 2008. Looking at the way the society is, I focused on getting as many commercial sex workers out of ungodly and degrading trade, and helping the sexually abused. Many young children are also part of this.\n\nThrough the help of the Almighty God, love, care and encouragement from many with this passion, it has helped towards the actualization of this divinely inspired project. This brought about the inception of EWBNLI to add value to the lives of women in our society."
+          - label: "Gallery Images"
+            name: "gallery"
+            widget: "list"
+            field: {label: "Image", name: "image", widget: "image"}

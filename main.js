@@ -42,45 +42,84 @@ const observer = new IntersectionObserver((entries, observer) => {
 const animatableElements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in');
 animatableElements.forEach(el => observer.observe(el));
 
+// === CMS DATA FETCHING & POPULATION ===
+async function fetchCMSData() {
+  try {
+    const response = await fetch('/content/data.json');
+    if (!response.ok) throw new Error('CMS data not found');
+    const data = await response.json();
+    
+    // Populate Texts
+    if (data.heroTitle) document.getElementById('cms-hero-title').innerHTML = data.heroTitle;
+    if (data.heroSubtitle) document.getElementById('cms-hero-subtitle').innerHTML = data.heroSubtitle;
+    if (data.whoWeAre) document.getElementById('cms-who-we-are').innerHTML = data.whoWeAre;
+    if (data.founderQuote) document.getElementById('cms-founder-quote').innerHTML = data.founderQuote;
+    if (data.howItStarted) document.getElementById('cms-how-it-started').innerHTML = data.howItStarted;
+    
+    // Populate Gallery
+    const galleryWrapper = document.getElementById('gallery-wrapper');
+    if (galleryWrapper && data.gallery && data.gallery.length > 0) {
+      galleryWrapper.innerHTML = ''; // Clear hardcoded
+      data.gallery.forEach(imgSrc => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        const img = document.createElement('img');
+        img.src = imgSrc.startsWith('/') ? '.' + imgSrc : imgSrc; 
+        img.alt = 'EWBNLI Gallery Image';
+        slide.appendChild(img);
+        galleryWrapper.appendChild(slide);
+      });
+    }
+  } catch (error) {
+    console.error('Error loading CMS data:', error);
+  } finally {
+    initGallery();
+  }
+}
+
+// Call CMS Fetch on load
+document.addEventListener('DOMContentLoaded', fetchCMSData);
+
 // Dynamic Gallery Injection for Swiper
-const galleryWrapper = document.getElementById('gallery-wrapper');
-
-if (galleryWrapper) {
-  // Lightbox event delegation
-  galleryWrapper.addEventListener('click', (e) => {
-    if (e.target.tagName === 'IMG') {
-      openLightbox(e.target.src);
-    }
-  });
-
-  // Initialize Swiper Carousel
-  const swiper = new Swiper('.gallery-swiper', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    loop: true,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      768: {
-        slidesPerView: 2,
-        spaceBetween: 30,
-      },
-      1024: {
-        slidesPerView: 3,
-        spaceBetween: 40,
+function initGallery() {
+  const galleryWrapper = document.getElementById('gallery-wrapper');
+  if (galleryWrapper) {
+    // Lightbox event delegation
+    galleryWrapper.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        openLightbox(e.target.src);
       }
-    }
-  });
+    });
+
+    // Initialize Swiper Carousel
+    const swiper = new Swiper('.gallery-swiper', {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      loop: true,
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 30,
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        }
+      }
+    });
+  }
 }
 
 // Lightbox Logic
